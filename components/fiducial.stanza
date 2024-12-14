@@ -64,7 +64,3 @@ public pcb-component fiducial-1mm :
 
   assign-landpattern(fd-landpattern)
   assign-symbol(fd-symbol)
-
-; Visualize the symbol and landpattern in the VSCode visualizer.
-; Remove before use of the component in a design
-view(fiducial-1mm)
