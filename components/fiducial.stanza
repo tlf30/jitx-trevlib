@@ -1,0 +1,70 @@
+#use-added-syntax(jitx)
+defpackage components/fiducial:
+  import core
+  import jitx
+  import jitx/commands
+  import jsl
+
+
+public pcb-landpattern fd-landpattern :
+  pad p[1] : circle-smd-pad(1.0) at loc(0.0, 0.0) on Top
+  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
+    Arc(0.0, 0.0, 2.5 + (0.254 / 2.0), 0.000, 360.000)
+  ])
+  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
+    Point(0.0, -2.5 - 0.254)
+    Point(0.0, -3.5 - 0.254)
+  ])
+    layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
+    Point(0.0, 2.5 + 0.254)
+    Point(0.0, 3.5 + 0.254)
+  ])
+    layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
+    Point(-2.5 - 0.254, 0.0)
+    Point(-3.5 - 0.254, 0.0)
+  ])
+    layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
+    Point(2.5 + 0.254, 0.0)
+    Point(3.5 + 0.254, 0.0)
+  ])
+
+public pcb-symbol fd-symbol :
+  val font-size = 1.0
+  pin p[1] at Point(0.0, -1.0) with :
+    direction = Down
+    length = 1.0
+    name-size = font-size
+
+  draw("foreground") = Circle(0.0, 0.0, 1.0)
+  draw("foreground") = Polyline(0.254, [
+    Point(0.0, 1.0)
+    Point(0.0, 2.0)])
+  draw("foreground") = Polyline(0.254, [
+    Point(0.0, -1.0)
+    Point(0.0, -2.0)])
+  draw("foreground") = Polyline(0.254, [
+    Point(1.0, 0.0)
+    Point(2.0, 0.0)])
+  draw("foreground") = Polyline(0.254, [
+    Point(-1.0, 0.0)
+    Point(-2.0, 0.0)])
+
+public pcb-component fiducial-1mm :
+  name = "fiducial-1mm"
+  description = "fiducial, OpenPNP 1mm fiducial, OpenPNP 1mm SMD Pad Fiducial"
+  mpn = "openpnp-f-1mm-smd"
+  manufacturer = "Trevor Flynn"
+  datasheet = "N/A"
+  reference-prefix = "FD"
+
+  pin-properties :
+    [pin:Ref      | pads:Int ... | side:Dir ]
+    [p[1]          | 1            | Up       ]
+
+
+  assign-landpattern(fd-landpattern)
+  assign-symbol(fd-symbol)
+
+; Visualize the symbol and landpattern in the VSCode visualizer.
+; Remove before use of the component in a design
+view(fiducial-1mm)

@@ -1,0 +1,50 @@
+{  
+  "version": 3,
+  "assignments": [
+  ],
+  "id-mapping": {  
+    "boxes": [  
+      [{"id":"ELvQsPhR2GuCeejHurZMip","unit-id":0},1],
+      [{"id":"G9BaRjJKuF2onoxb2YneQK","unit-id":0},3]
+    ],
+    "inst-boxes": [  
+      [{"id":"49WozyEnVgtuRGFUuTVSty","unit-id":0},4]
+    ],
+    "nets": [
+    ],
+    "ports": [  
+      ["11111111111A4vFB3n",0],
+      ["FjXz5k2b72G7DJmQMsmkSA",2]
+    ]
+  },
+  "design": {  
+    "input": {  
+      "paper-size": {  
+        "x": 145,
+        "y": 72
+      },
+      "label-style": {  
+        "type": "monospace-label-style",
+        "height-in-grid-units": 0.8,
+        "char-width-relative-to-height": 0.6
+      },
+      "boxes": [  
+        {"id":1,"sw":{"x":-2,"y":-2},"ne":{"x":2,"y":2},"ports":[{"id":0,"pt":{"x":0,"y":-2},"dir":"Down","tag":"AnyTag"}],"orientation":{"type":"any-rotation"}},
+        {"id":3,"sw":{"x":-2,"y":-2},"ne":{"x":2,"y":2},"ports":[{"id":2,"pt":{"x":0,"y":-2},"dir":"Down","tag":"AnyTag"}],"orientation":{"type":"any-rotation"}}
+      ],
+      "insts": [  
+        {"id":4,"box":3,"group":null}
+      ],
+      "nets": [
+      ],
+      "shorts": [
+      ],
+      "schematic-group-order": [
+      ]
+    },
+    "sheets": [  
+      {"id":8,"title":null,"groups":[{"id":7,"groups":[null],"border":{"sw":{"x":68,"y":32},"ne":{"x":76,"y":40}},"insts":[{"inst":4,"pose":{"center":{"x":72,"y":36},"angle":0,"flip-x?":false}}],"children":[]}],"nets":[]}
+    ],
+    "hierarchical-diagram": null
+  }
+}
