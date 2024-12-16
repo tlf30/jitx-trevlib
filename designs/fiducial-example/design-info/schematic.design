@@ -4,28 +4,28 @@
   ],
   "id-mapping": {  
     "boxes": [  
-      [{"id":"ELvQsPhR2GuCeejHurZMip","unit-id":0},1],
-      [{"id":"G9BaRjJKuF2onoxb2YneQK","unit-id":0},3]
+      [{"id":"11111111112XAZGAeb","unit-id":0},1],
+      [{"id":"BH6z8BADM8xtseaubcFxzw","unit-id":0},3]
     ],
     "inst-boxes": [  
-      [{"id":"49WozyEnVgtuRGFUuTVSty","unit-id":0},4]
+      [{"id":"AN6MbsMeq9mK5yUpv2rqn4","unit-id":0},4]
     ],
     "nets": [
     ],
     "ports": [  
-      ["11111111111A4vFB3n",0],
-      ["FjXz5k2b72G7DJmQMsmkSA",2]
+      ["11111111112XUeShH8",0],
+      ["11111111112XGWhJqv",2]
     ]
   },
   "design": {  
     "input": {  
       "paper-size": {  
-        "x": 145,
-        "y": 72
+        "x": 200,
+        "y": 125
       },
       "label-style": {  
         "type": "monospace-label-style",
-        "height-in-grid-units": 0.8,
+        "height-in-grid-units": 1.2,
         "char-width-relative-to-height": 0.6
       },
       "boxes": [  
@@ -43,7 +43,7 @@
       ]
     },
     "sheets": [  
-      {"id":6,"title":null,"groups":[{"id":5,"groups":[null],"border":{"sw":{"x":68,"y":32},"ne":{"x":76,"y":40}},"insts":[{"inst":4,"pose":{"center":{"x":72,"y":36},"angle":0,"flip-x?":false}}],"children":[]}],"nets":[]}
+      {"id":8,"title":null,"groups":[{"id":7,"groups":[null],"border":{"sw":{"x":96,"y":58},"ne":{"x":104,"y":66}},"insts":[{"inst":4,"pose":{"center":{"x":100,"y":62},"angle":0,"flip-x?":false}}],"children":[]}],"nets":[]}
     ],
     "hierarchical-diagram": null
   }

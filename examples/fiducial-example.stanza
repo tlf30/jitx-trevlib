@@ -1,0 +1,32 @@
+#use-added-syntax(jitx)
+defpackage trevlib/examples :
+    import core
+    import jitx
+    import jitx/commands
+    import jitx/parts
+    import ocdb/utils/generic-components
+    import jsl/symbols/net-symbols
+    import trevlib/examples/helpers
+    import trevlib/components/fiducial
+
+; Define the shape/size of the board
+val board-shape = RoundedRectangle(30.0, 15.0, 0.25)
+
+; Module to run as a design
+pcb-module fiducial-example :
+  
+    inst f-1mm : fiducial-1mm
+
+; Set the :
+;     design-name     - a directory with this name will be created in the "designs" directory
+;     board           - a Board object representing the stackup, rules and board shape for a particular design
+setup-design("fiducial-example", board-shape)
+
+; Set the top level module (the module to be compile into a schematic and PCB)
+set-main-module(fiducial-example)
+
+; View the results
+; examine the schematic that was auto-generated
+view-schematic()
+; view the board that was created
+view-board()

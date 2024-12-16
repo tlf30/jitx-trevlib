@@ -1,0 +1,65 @@
+#use-added-syntax(jitx)
+defpackage trevlib/examples/board :
+  import core
+  import jitx
+  import jitx/commands
+  import jitx/parts
+
+pcb-material copper:
+  type = Conductor
+
+pcb-material soldermask:
+  type = Dielectric
+
+pcb-material core-45:
+  type = Dielectric
+
+pcb-stackup simple-2-layer :
+  stack(0.019, soldermask) ; 0.5mil over conductor
+  stack(0.035, copper) 
+  stack(1.5, core-45)
+  stack(0.035, copper) 
+  stack(0.019, soldermask) ; 0.5mil over conductor 
+
+public pcb-rules my-rules :
+  name = "my rules"
+  description = "Random values taken from docs"
+
+  min-copper-width = 0.13
+  min-copper-copper-space = 0.2
+  min-copper-hole-space = 0.2032
+  min-copper-edge-space = 0.381
+  min-annular-ring = 0.1524
+  min-drill-diameter = 0.254
+  min-silkscreen-width = 0.2
+  min-pitch-leaded = 0.35
+  min-pitch-bga = 0.35
+  max-board-width = 457.2
+  max-board-height = 609.6
+  solder-mask-registration = 0.15
+  min-silk-solder-mask-space = 0.15
+  min-silkscreen-text-height = 0.762
+  min-th-pad-expand-outer = 0.15
+  min-soldermask-opening = 0.152
+  min-soldermask-bridge = 0.102
+  min-hole-to-hole = 0.254
+  min-pth-pin-solder-clearance = 3.0
+
+public defn setup-my-board (outline:Shape) :
+  set-board(this-board(outline))
+  set-rules(my-rules)
+
+pcb-via default-th:
+  name = "Std TH"
+  start = Top
+  stop = Bottom
+  diameter = 0.6 ; mm
+  hole-diameter = 0.3 ; mm
+  type = MechanicalDrill
+
+; Creates a pcb-board with a typical JLCPCB stackup given board outline.
+public pcb-board this-board (outline:Shape) :
+  stackup = simple-2-layer
+  boundary = outline
+  signal-boundary = outline
+  vias = [default-th]

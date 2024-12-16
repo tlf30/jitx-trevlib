@@ -1,5 +1,5 @@
 #use-added-syntax(jitx)
-defpackage components/fiducial:
+defpackage trevlib/components/fiducial:
   import core
   import jitx
   import jitx/commands
@@ -15,17 +15,23 @@ public pcb-landpattern fd-landpattern :
     Point(0.0, -2.5 - 0.254)
     Point(0.0, -3.5 - 0.254)
   ])
-    layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
+  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
     Point(0.0, 2.5 + 0.254)
     Point(0.0, 3.5 + 0.254)
   ])
-    layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
+  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
     Point(-2.5 - 0.254, 0.0)
     Point(-3.5 - 0.254, 0.0)
   ])
-    layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
+  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
     Point(2.5 + 0.254, 0.0)
     Point(3.5 + 0.254, 0.0)
+  ])
+  ;layer(Soldermask(Top)) = Polyline(1.0, [
+  ;  Arc(0.0, 0.0, 2.5 + (1.0 / 2.0), 0.000, 360.000)
+  ;])
+  layer(Courtyard(Top)) =  Polyline(1.0, [
+    Arc(0.0, 0.0, 0.5 + (1.0 / 2.0), 0.000, 360.000)
   ])
 
 public pcb-symbol fd-symbol :

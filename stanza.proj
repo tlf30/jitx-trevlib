@@ -7,10 +7,10 @@ packages trevlib/components/* defined-in "components/"
 packages trevlib/symbols/* defined-in "symbols/"
 packages trevlib/landpatterns/* defined-in "landpatterns/"
 packages trevlib/3d-models/* defined-in "3d-models/"
+packages trevlib/examples/* defined-in "examples/"
 
-build main:
-  inputs: trevlib/main
+build examples:
+  inputs: trevlib/examples
   pkg: ".slm/pkgs"
   o: "trevlib"
 
-package components/fiducial defined-in "components\\fiducial.stanza"
