@@ -5,33 +5,74 @@ defpackage trevlib/components/fiducial:
   import jitx/commands
   import jsl
 
+public pcb-landpattern fd-landpattern (
+                                      padSize:Double = 1.0, 
+                                      exclusionRadius:Double = 1.0
+                                      ) :
+  pad p[1] : circle-smd-pad(padSize) at loc(0.0, 0.0) on Top
 
-public pcb-landpattern fd-landpattern :
-  pad p[1] : circle-smd-pad(1.0) at loc(0.0, 0.0) on Top
-  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
-    Arc(0.0, 0.0, 2.5 + (0.254 / 2.0), 0.000, 360.000)
+  layer(Courtyard(Top)) = Polyline(exclusionRadius, [
+    Arc(0.0, 0.0, (padSize / 2.0) + (exclusionRadius / 2.0), 0.000, 360.000)
   ])
-  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
-    Point(0.0, -2.5 - 0.254)
-    Point(0.0, -3.5 - 0.254)
+  layer(SolderMask(Top)) = Polyline(exclusionRadius, [
+    Arc(0.0, 0.0, (padSize / 2.0) + (exclusionRadius / 2.0), 0.000, 360.000)
   ])
-  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
-    Point(0.0, 2.5 + 0.254)
-    Point(0.0, 3.5 + 0.254)
+
+public pcb-landpattern fd-landpattern-crosshair (
+                                                padSize:Double = 1.0
+                                                exclusionRadius:Double = 1.0 
+                                                crosshairRadius:Double = exclusionRadius + 1.0
+                                                crosshairLineSize:Double = 0.254
+                                                crosshairCircle:True|False = true
+                                                crosshairNorth:True|False = true
+                                                crosshairNorthOffset:Double = 0.0
+                                                crosshairNorthLen:Double = 1.0
+                                                crosshairSouth:True|False = true
+                                                crosshairSouthOffset:Double = 0.0
+                                                crosshairSouthLen:Double = 1.0
+                                                crosshairEast:True|False = true
+                                                crosshairEastOffset:Double = 0.0
+                                                crosshairEastLen:Double = 1.0
+                                                crosshairWest:True|False = true
+                                                crosshairWestOffset:Double = 0.0
+                                                crosshairWestLen:Double = 1.0
+                                                ) :
+  pad p[1] : circle-smd-pad(padSize) at loc(0.0, 0.0) on Top
+
+  if crosshairCircle :
+    layer(Silkscreen("f-silk", Top)) = Polyline(crosshairLineSize, [
+      Arc(0.0, 0.0, crosshairRadius + (crosshairLineSize / 2.0), 0.000, 360.000)
+    ])
+
+  if crosshairSouth :
+    layer(Silkscreen("f-silk", Top)) = Polyline(crosshairLineSize, [
+      Point(0.0, (-1.0 * (crosshairRadius + crosshairSouthOffset)) - crosshairLineSize)
+      Point(0.0, (-1.0 * (crosshairRadius + crosshairSouthOffset + crosshairSouthLen)) - crosshairLineSize)
+    ])
+
+  if crosshairNorth :
+    layer(Silkscreen("f-silk", Top)) = Polyline(crosshairLineSize, [
+      Point(0.0, (crosshairRadius + crosshairNorthOffset) + crosshairLineSize)
+      Point(0.0, (crosshairRadius + crosshairNorthOffset + crosshairNorthLen) + crosshairLineSize)
+    ])
+  
+  if crosshairWest :
+    layer(Silkscreen("f-silk", Top)) = Polyline(crosshairLineSize, [
+      Point((-1.0 * (crosshairRadius + crosshairWestOffset)) - crosshairLineSize, 0.0)
+      Point((-1.0 * (crosshairRadius + crosshairWestOffset + crosshairWestLen)) - crosshairLineSize - crosshairLineSize, 0.0)
+    ])
+  
+  if crosshairEast :
+    layer(Silkscreen("f-silk", Top)) = Polyline(crosshairLineSize, [
+      Point((crosshairRadius + crosshairEastOffset) + crosshairLineSize, 0.0)
+      Point((crosshairRadius + crosshairEastOffset + crosshairEastLen) + crosshairLineSize, 0.0)
+    ])
+
+  layer(Courtyard(Top)) = Polyline(exclusionRadius, [
+    Arc(0.0, 0.0, (padSize / 2.0) + (exclusionRadius / 2.0), 0.000, 360.000)
   ])
-  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
-    Point(-2.5 - 0.254, 0.0)
-    Point(-3.5 - 0.254, 0.0)
-  ])
-  layer(Silkscreen("f-silk", Top)) = Polyline(0.254, [
-    Point(2.5 + 0.254, 0.0)
-    Point(3.5 + 0.254, 0.0)
-  ])
-  ;layer(Soldermask(Top)) = Polyline(1.0, [
-  ;  Arc(0.0, 0.0, 2.5 + (1.0 / 2.0), 0.000, 360.000)
-  ;])
-  layer(Courtyard(Top)) =  Polyline(1.0, [
-    Arc(0.0, 0.0, 0.5 + (1.0 / 2.0), 0.000, 360.000)
+  layer(SolderMask(Top)) = Polyline(exclusionRadius, [
+    Arc(0.0, 0.0, (padSize / 2.0) + (exclusionRadius / 2.0), 0.000, 360.000)
   ])
 
 public pcb-symbol fd-symbol :
@@ -55,6 +96,7 @@ public pcb-symbol fd-symbol :
     Point(-1.0, 0.0)
     Point(-2.0, 0.0)])
 
+
 public pcb-component fiducial-1mm :
   name = "fiducial-1mm"
   description = "fiducial, OpenPNP 1mm fiducial, OpenPNP 1mm SMD Pad Fiducial"
@@ -65,8 +107,88 @@ public pcb-component fiducial-1mm :
 
   pin-properties :
     [pin:Ref      | pads:Int ... | side:Dir ]
-    [p[1]          | 1            | Up       ]
+    [p[1]          | 1            | Up      ]
 
+  assign-landpattern(fd-landpattern(1.0))
+  assign-symbol(fd-symbol)
 
-  assign-landpattern(fd-landpattern)
+public pcb-component fiducial-2_5mm :
+  name = "fiducial-1mm"
+  description = "fiducial, OpenPNP 2.5mm fiducial, OpenPNP 2.5mm SMD Pad Fiducial"
+  mpn = "openpnp-f-2_5mm-smd"
+  manufacturer = "Trevor Flynn"
+  datasheet = "N/A"
+  reference-prefix = "FD"
+
+  pin-properties :
+    [pin:Ref      | pads:Int ... | side:Dir ]
+    [p[1]          | 1            | Up      ]
+
+  assign-landpattern(fd-landpattern(2.5))
+  assign-symbol(fd-symbol)
+
+public pcb-component fiducial (padSize:Double = 1.0, exclusionRadius:Double = 1.0) :
+  name = "fiducial-1mm"
+  description = "fiducial, OpenPNP fiducial, OpenPNP SMD Pad Fiducial"
+  mpn = "openpnp-f-1mm-smd"
+  manufacturer = "Trevor Flynn"
+  datasheet = "N/A"
+  reference-prefix = "FD"
+
+  pin-properties :
+    [pin:Ref      | pads:Int ... | side:Dir ]
+    [p[1]          | 1            | Up      ]
+
+  assign-landpattern(fd-landpattern(padSize, exclusionRadius))
+  assign-symbol(fd-symbol)
+
+public pcb-component fiducial-crosshair (
+  padSize:Double = 1.0
+  exclusionRadius:Double = 1.0
+  crosshairRadius:Double = exclusionRadius + 1.0
+  crosshairLineSize:Double = 0.254
+  crosshairCircle:True|False = true
+  crosshairNorth:True|False = true
+  crosshairNorthOffset:Double = 0.0
+  crosshairNorthLen:Double = 1.0
+  crosshairSouth:True|False = true
+  crosshairSouthOffset:Double = 0.0
+  crosshairSouthLen:Double = 1.0
+  crosshairEast:True|False = true
+  crosshairEastOffset:Double = 0.0
+  crosshairEastLen:Double = 1.0
+  crosshairWest:True|False = true
+  crosshairWestOffset:Double = 0.0
+  crosshairWestLen:Double = 1.0
+  ) :
+  name = "fiducial-1mm"
+  description = "fiducial, OpenPNP fiducial, OpenPNP SMD Pad Fiducial"
+  mpn = "openpnp-f-1mm-smd"
+  manufacturer = "Trevor Flynn"
+  datasheet = "N/A"
+  reference-prefix = "FD"
+
+  pin-properties :
+    [pin:Ref      | pads:Int ... | side:Dir ]
+    [p[1]          | 1            | Up      ]
+
+  assign-landpattern(fd-landpattern-crosshair(
+    padSize,
+    exclusionRadius,
+    crosshairRadius,
+    crosshairLineSize,
+    crosshairCircle,
+    crosshairNorth,
+    crosshairNorthOffset,
+    crosshairNorthLen,
+    crosshairSouth,
+    crosshairSouthOffset,
+    crosshairSouthLen,
+    crosshairEast,
+    crosshairEastOffset,
+    crosshairEastLen,
+    crosshairWest,
+    crosshairWestOffset,
+    crosshairWestLen,
+  ))
   assign-symbol(fd-symbol)

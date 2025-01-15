@@ -4,23 +4,67 @@ defpackage trevlib/examples :
     import jitx
     import jitx/commands
     import jitx/parts
-    import ocdb/utils/generic-components
-    import jsl/symbols/net-symbols
     import trevlib/examples/helpers
     import trevlib/components/fiducial
 
 ; Define the shape/size of the board
-val board-shape = RoundedRectangle(30.0, 15.0, 0.25)
+val board-shape = RoundedRectangle(30.0, 30.0, 0.25)
 
 ; Module to run as a design
 pcb-module fiducial-example :
   
     inst f-1mm : fiducial-1mm
+    inst f-2_5mm : fiducial-2_5mm
+    inst f-crosshair : fiducial-crosshair(
+        1.0   ; Pad Size
+        1.0   ; Exclusion Radius
+        2.0   ; Crosshair Radius
+        0.254 ; Crosshair line Size
+        true  ; Enable Crosshair circle
+        true  ; Enable Crosshair north line
+        0.0   ; Crosshair north line offset
+        1.0   ; Corsshair north line length
+        true  ; Enable Crosshair south line
+        0.0   ; Crosshair south line offset
+        1.0   ; Corsshair south line length
+        true  ; Enable Crosshair east line
+        0.0   ; Crosshair east line offset
+        1.0   ; Corsshair east line length
+        true  ; Enable Crosshair west line
+        0.0   ; Crosshair west line offset
+        1.0   ; Corsshair west line length
+    )
+
+    inst f-opulo : fiducial-crosshair(
+        1.0   ; Pad Size
+        1.0   ; Exclusion Radius
+        4.0   ; Crosshair Radius
+        0.254 ; Crosshair line Size
+        true  ; Enable Crosshair circle
+        true  ; Enable Crosshair north line
+        -2.0 - (0.254 / 2.0)   ; Crosshair north line offset
+        2.5   ; Corsshair north line length
+        true  ; Enable Crosshair south line
+        -0.5 - (0.254 / 2.0)   ; Crosshair south line offset
+        1.0   ; Corsshair south line length
+        true  ; Enable Crosshair east line
+        -0.5 - (0.254 / 2.0)   ; Crosshair east line offset
+        1.0   ; Corsshair east line length
+        true  ; Enable Crosshair west line
+        -2.0 - (0.254 / 2.0)   ; Crosshair west line offset
+        2.5   ; Corsshair west line length
+    )
+
+    ;Layers
+    ;layer(SolderMask(Top)) = board-shape
+    ;layer(SolderMask(Bottom)) = board-shape
+
 
 ; Set the :
 ;     design-name     - a directory with this name will be created in the "designs" directory
 ;     board           - a Board object representing the stackup, rules and board shape for a particular design
 setup-design("fiducial-example", board-shape)
+
 
 ; Set the top level module (the module to be compile into a schematic and PCB)
 set-main-module(fiducial-example)

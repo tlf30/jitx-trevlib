@@ -8,7 +8,6 @@ defpackage trevlib/examples/helpers :
   import jitx
   import jitx/commands
   import jitx/parts
-
   import trevlib/examples/board
 
 ; ==================
@@ -77,7 +76,7 @@ public defn setup-design (name:String, board-shape:Shape
   setup-bill-of-materials(quantity, vendors)
   set-paper(paper-size)
   set-use-layout-groups()
-  set-export-backend(`altium) ; set the CAD software for export to be altium (also supported: `kicad)
+  set-export-backend(`kicad) ; set the CAD software for export to be altium (also supported: `kicad)
 
 ; ====================
 ; Actual Export design
