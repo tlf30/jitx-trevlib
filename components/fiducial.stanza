@@ -59,7 +59,7 @@ public pcb-landpattern fd-landpattern-crosshair (
   if crosshairWest :
     layer(Silkscreen("f-silk", Top)) = Polyline(crosshairLineSize, [
       Point((-1.0 * (crosshairRadius + crosshairWestOffset)) - crosshairLineSize, 0.0)
-      Point((-1.0 * (crosshairRadius + crosshairWestOffset + crosshairWestLen)) - crosshairLineSize - crosshairLineSize, 0.0)
+      Point((-1.0 * (crosshairRadius + crosshairWestOffset + crosshairWestLen)) - crosshairLineSize, 0.0)
     ])
   
   if crosshairEast :
@@ -122,7 +122,7 @@ public pcb-component fiducial-2_5mm :
 
   pin-properties :
     [pin:Ref      | pads:Int ... | side:Dir ]
-    [p[1]          | 1            | Up      ]
+    [p[1]         | 1            | Up       ]
 
   assign-landpattern(fd-landpattern(2.5))
   assign-symbol(fd-symbol)
@@ -137,7 +137,7 @@ public pcb-component fiducial (padSize:Double = 1.0, exclusionRadius:Double = 1.
 
   pin-properties :
     [pin:Ref      | pads:Int ... | side:Dir ]
-    [p[1]          | 1            | Up      ]
+    [p[1]         | 1            | Up       ]
 
   assign-landpattern(fd-landpattern(padSize, exclusionRadius))
   assign-symbol(fd-symbol)
@@ -170,7 +170,7 @@ public pcb-component fiducial-crosshair (
 
   pin-properties :
     [pin:Ref      | pads:Int ... | side:Dir ]
-    [p[1]          | 1            | Up      ]
+    [p[1]         | 1            | Up       ]
 
   assign-landpattern(fd-landpattern-crosshair(
     padSize,

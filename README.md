@@ -62,10 +62,10 @@ Then fiducials can be created as components.
   
 
 The library defines the following components:
-`public pcb-component fiducial-1mm`
-`public pcb-component fiducial-2_5mm`
-`public pcb-component fiducial (padSize:Double = 1.0, exclusionRadius:Double = 1.0)`
-```
+`public pcb-component fiducial-1mm`  
+`public pcb-component fiducial-2_5mm`  
+`public pcb-component fiducial (padSize:Double = 1.0, exclusionRadius:Double = 1.0)`  
+```stanza
 public pcb-component fiducial-crosshair (
   padSize:Double = 1.0
   exclusionRadius:Double = 1.0

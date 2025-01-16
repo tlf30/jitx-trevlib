@@ -11,6 +11,13 @@
     {"operation":"place","place":{"placements":[{"id":"DzqLuwq3QWvtRV3gJXSAzq","pose":{"center":{"x":6.6157050092764358,"y":-6.2617643784786656},"angle":0},"side":"top"}]}},
     {"operation":"place","place":{"placements":[{"id":"5xTxLBHWQm4D4ERaN1psHK","pose":{"center":{"x":7.87218738404453,"y":9.13146382189239},"angle":180},"side":"top"}]}},
     {"operation":"place","place":{"placements":[{"id":"DzqLuwq3QWvtRV3gJXSAzq","pose":{"center":{"x":7.7445315398886816,"y":-5.5092133580705021},"angle":0},"side":"top"}]}},
-    {"operation":"place","place":{"placements":[{"id":"DzqLuwq3QWvtRV3gJXSAzq","pose":{"center":{"x":8.4970825602968443,"y":-4.9619035250463828},"angle":0},"side":"top"}]}}
+    {"operation":"place","place":{"placements":[{"id":"DzqLuwq3QWvtRV3gJXSAzq","pose":{"center":{"x":8.4970825602968443,"y":-4.9619035250463828},"angle":0},"side":"top"}]}},
+    {"operation":"place","place":{"placements":[{"id":"B4xXNJjmhUM6zK4uQqAAz1","pose":{"center":{"x":-8.90743583202642,"y":9.26509489737557},"angle":270},"side":"top"}]}},
+    {"operation":"place","place":{"placements":[{"id":"5zMUU7PimEapYqMvu8Pr6G","pose":{"center":{"x":-10.809056601890124,"y":-10.920199216996084},"angle":180},"side":"top"}]}},
+    {"operation":"place","place":{"placements":[{"id":"DzqLuwq3QWvtRV3gJXSAzq","pose":{"center":{"x":8.69058580746756,"y":-8.63846522128998},"angle":0},"side":"top"}]}},
+    {"operation":"place","place":{"placements":[{"id":"5xTxLBHWQm4D4ERaN1psHK","pose":{"center":{"x":10.387729597263835,"y":11.066496293599549},"angle":180},"side":"top"}]}},
+    {"operation":"place","place":{"placements":[{"id":"B4xXNJjmhUM6zK4uQqAAz1","pose":{"center":{"x":-11.422978045245726,"y":11.780637110594876},"angle":270},"side":"top"}]}},
+    {"operation":"place","place":{"placements":[{"id":"5zMUU7PimEapYqMvu8Pr6G","pose":{"center":{"x":-11.7765728377437,"y":-11.1137024641668},"angle":180},"side":"top"}]}},
+    {"operation":"place","place":{"placements":[{"id":"DzqLuwq3QWvtRV3gJXSAzq","pose":{"center":{"x":9.27109554897971,"y":-9.60598145714356},"angle":0},"side":"top"}]}}
   ]
 }
