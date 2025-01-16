@@ -1,4 +1,4 @@
 name = "trevlib"
-version = "0.0.1"
+version = "0.0.2"
 [dependencies]
 JITX3 = { path = "{SLM_ROOT}/JITX3" }
